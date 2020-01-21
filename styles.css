@@ -1,0 +1,54 @@
+body{
+    margin: 0;
+    height: 100vh;
+    background-color: black;
+    /*overflow: hidden;*/
+
+}
+
+.background-image-container{
+    position: relative;
+}
+
+.background-image{
+    height: 100vh;
+    transform: translateX(0%);
+    transition: transform 1.5s ease;
+}
+
+.slide-text-container{
+    position: absolute;
+    z-index: 99;
+    top: 40vh;
+    left: 50px;
+    width: 200px;
+}
+
+.slide-main-text{
+    color: white;
+    font-size: 30px;
+    text-decoration: underline;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.button{
+    color: white;
+    font-size: 45px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.button.forward{
+    position: absolute;
+    top: 50vh;
+    right: 10px;
+    z-index: 99;
+}
+
+.button.backward{
+    position: absolute;
+    top: 50vh;
+    left: 10px;
+    z-index: 99;
+}
