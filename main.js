@@ -52,8 +52,22 @@ const slideChanges = currentSlide =>{
     const image = document.getElementById('background-image')
     image.style.transform = `translate(${data[currentSlide].view}%)`
     setTimeout(()=>{
+        slideTextContainer(currentSlide)
         slideText.innerHTML = ''
         slideText.innerText = data[currentSlide].text 
         slideText.style.opacity = 1
     }, 1500)
+}
+
+const slideTextContainer = (currentSlide) =>{
+    const slideTextContainer = document.getElementById('slide-text-container')
+    if(currentSlide === 1){
+        slideTextContainer.style.top = "40vh"
+        slideTextContainer.style.left = "50px"
+    }else if(currentSlide === 3){
+        slideTextContainer.style.top = "40vh"
+        slideTextContainer.style.right = "20px"
+        slideTextContainer.style.left = "500px"
+    }
+        
 }

@@ -19,8 +19,8 @@ body{
 .slide-text-container{
     position: absolute;
     z-index: 99;
-    top: 40vh;
-    left: 50px;
+    top: 10px;
+    left: 10px;
     width: 200px;
 }
 
