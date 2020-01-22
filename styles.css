@@ -80,13 +80,14 @@ body{
     list-style: none;
     margin: 0;
     padding: 0;
+    font-size: 8px;
 }
 
 .slide-map-container li{
-    display: inline-block;
+    display: inline;
     border: 1px dotted white;
     margin-left: -1px;
-    padding: 1px;
+    padding: 3px;
 }
 
 .slide-map-container li a{
@@ -95,6 +96,12 @@ body{
     text-decoration: none;
     text-align: center;
     color: white;
-    font-size: 8px;
+}
+
+.slide-map-container li a.side{
+    color: rgba(0,0,0,0)
+}
+
+.slide-map-container li a.clicked{
     background-color: white;
 }

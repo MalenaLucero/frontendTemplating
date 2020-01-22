@@ -35,6 +35,16 @@ const initialize = () =>{
     slideText = document.getElementById('slide-main-text')
     slideText.style.opacity = 1
     slideMapButtons()
+    window.addEventListener("click",()=>{
+        data.forEach((e,i)=>{
+            if(i!==currentSlide){
+                const notClickedAnchor = document.getElementById(i)
+                notClickedAnchor.classList.remove('clicked')
+            }
+        })
+        const clickedAnchor = document.getElementById(currentSlide)
+        clickedAnchor.classList.add('clicked')
+    })
 }
 
 const slideMapButtons = () =>{
@@ -43,15 +53,24 @@ const slideMapButtons = () =>{
         const listItem = document.createElement('li')
         const anchor = document.createElement('a')
         anchor.innerText = index
+        if(index === 0 || index === data.length -1) anchor.classList.add('side')
         anchor.href = "#"
+        anchor.id = index
+        anchor.onclick = () =>{
+            slideText.style.opacity = 0
+            currentSlide = index
+            slideChanges(currentSlide)
+        }
         listItem.appendChild(anchor)
         slideMapContainer.appendChild(listItem)
     })
+    
 }
+
+
 
 const moveImage = (direction) =>{
     slideText.style.opacity = 0
-
     if(direction === 'forward'){
         currentSlide += 1
         slideChanges(currentSlide)
