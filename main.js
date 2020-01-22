@@ -34,6 +34,19 @@ let slideText
 const initialize = () =>{
     slideText = document.getElementById('slide-main-text')
     slideText.style.opacity = 1
+    slideMapButtons()
+}
+
+const slideMapButtons = () =>{
+    const slideMapContainer = document.getElementById('slide-map-container')
+    data.forEach((e,index)=>{
+        const listItem = document.createElement('li')
+        const anchor = document.createElement('a')
+        anchor.innerText = index
+        anchor.href = "#"
+        listItem.appendChild(anchor)
+        slideMapContainer.appendChild(listItem)
+    })
 }
 
 const moveImage = (direction) =>{
@@ -51,23 +64,61 @@ const moveImage = (direction) =>{
 const slideChanges = currentSlide =>{
     const image = document.getElementById('background-image')
     image.style.transform = `translate(${data[currentSlide].view}%)`
-    setTimeout(()=>{
-        slideTextContainer(currentSlide)
-        slideText.innerHTML = ''
-        slideText.innerText = data[currentSlide].text 
-        slideText.style.opacity = 1
-    }, 1500)
+    if(currentSlide === 7){
+        setTimeout(()=>{
+            textFadeIn(data[currentSlide].text[0])
+        }, 1500)
+        setTimeout(()=>{
+            slideText.style.opacity = 0
+        },2500)
+        setTimeout(()=>{
+            textFadeIn(data[currentSlide].text[1])
+        }, 4000)
+    }else{
+        setTimeout(()=>{
+            textFadeIn(data[currentSlide].text)
+        }, 1500)
+    }
+}
+
+const textFadeIn = (text) =>{
+    slideTextContainer(currentSlide)
+    slideText.innerHTML = ''
+    slideText.innerText = text
+    slideText.style.opacity = 1
 }
 
 const slideTextContainer = (currentSlide) =>{
     const slideTextContainer = document.getElementById('slide-text-container')
-    if(currentSlide === 1){
-        slideTextContainer.style.top = "40vh"
-        slideTextContainer.style.left = "50px"
-    }else if(currentSlide === 3){
-        slideTextContainer.style.top = "40vh"
-        slideTextContainer.style.right = "20px"
-        slideTextContainer.style.left = "500px"
-    }
-        
+    switch(currentSlide){
+        case 0: 
+            slideTextContainer.classList.remove('left')
+            slideTextContainer.classList.remove('right')
+            slideTextContainer.classList.remove('top-right')
+            slideTextContainer.classList.add('top-left')
+            break
+        case 1:
+        case 2:
+        case 6:
+        case 7:
+            slideTextContainer.classList.remove('top-left')
+            slideTextContainer.classList.remove('top-right')
+            slideTextContainer.classList.remove('right')
+            slideTextContainer.classList.add('left')
+            break
+        case 3:
+        case 4:
+        case 5:
+            slideTextContainer.classList.remove('left')
+            slideTextContainer.classList.remove('top-left')
+            slideTextContainer.classList.remove('top-right')
+            slideTextContainer.classList.add('right')
+            break
+        case 8:
+            slideTextContainer.classList.remove('right')
+            slideTextContainer.classList.remove('left')
+            slideTextContainer.classList.remove('top-left')
+            slideTextContainer.classList.add('top-right')
+            
+    }   
 }

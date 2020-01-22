@@ -19,9 +19,27 @@ body{
 .slide-text-container{
     position: absolute;
     z-index: 99;
+    width: 300px;
+}
+
+.top-left{
     top: 10px;
     left: 10px;
-    width: 200px;
+}
+
+.left{
+    top: 40vh;
+    left: 50px;
+}
+
+.right{
+    top: 40vh;
+    right: 20px;
+}
+
+.top-right{
+    top: 10px;
+    right: 10px;
 }
 
 .slide-main-text{
@@ -51,4 +69,32 @@ body{
     top: 50vh;
     left: 10px;
     z-index: 99;
+}
+
+.slide-map-container{
+    position: absolute;
+    z-index: 99;
+    color: white;
+    bottom: 40px;
+    left: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.slide-map-container li{
+    display: inline-block;
+    border: 1px dotted white;
+    margin-left: -1px;
+    padding: 1px;
+}
+
+.slide-map-container li a{
+    display: inline-block;
+    width: 10px;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    font-size: 8px;
+    background-color: white;
 }
