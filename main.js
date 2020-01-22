@@ -21,15 +21,22 @@ const data = [{
         text: 'TRAIN FOR PERFECTION BUT AIM FOR MORE'
     },{
         view: -87,
-        text: ['TAKE PRIDE IN YOUR WORK BUT DO NOT SEEK PRAISE', 'TEMPORARY SACRIFICE BRINGS LASTING RESULTS'] 
+        text: 'TAKE PRIDE IN YOUR WORK BUT DO NOT SEEK PRAISE'
+    },{
+        view: -87,
+        text: 'TEMPORARY SACRIFICE BRINGS LASTING RESULTS'
     },{
         view: -96,
-        text: ['BECOME A MONK']
+        text: 'BECOME A MONK',
+        details: ['Interested in joining our monastery?', 'Checkout our current openings at '],
+        careersLink: 'mediamonks.com/careers',
+        socialMedia: ['Mailers', 'Facebook', 'Twitter']
     }
 ]
 
 let currentSlide = 0 // from 0 to 9
 let slideText
+let lastSlideContent
 
 const initialize = () =>{
     slideText = document.getElementById('slide-main-text')
@@ -67,8 +74,6 @@ const slideMapButtons = () =>{
     
 }
 
-
-
 const moveImage = (direction) =>{
     slideText.style.opacity = 0
     if(direction === 'forward'){
@@ -83,28 +88,45 @@ const moveImage = (direction) =>{
 const slideChanges = currentSlide =>{
     const image = document.getElementById('background-image')
     image.style.transform = `translate(${data[currentSlide].view}%)`
-    if(currentSlide === 7){
-        setTimeout(()=>{
-            textFadeIn(data[currentSlide].text[0])
-        }, 1500)
-        setTimeout(()=>{
-            slideText.style.opacity = 0
-        },2500)
-        setTimeout(()=>{
-            textFadeIn(data[currentSlide].text[1])
-        }, 4000)
-    }else{
-        setTimeout(()=>{
-            textFadeIn(data[currentSlide].text)
-        }, 1500)
-    }
+    setTimeout(()=>{
+        lastSlideContent = document.getElementById('last-slide-content')
+        lastSlideContent.innerHTML = ''
+        textFadeIn(data[currentSlide].text)
+    }, 1300)
 }
 
 const textFadeIn = (text) =>{
     slideTextContainer(currentSlide)
+    
     slideText.innerHTML = ''
     slideText.innerText = text
-    slideText.style.opacity = 1
+    slideText.style.opacity = 1 
+    //text of the last slide
+    if(currentSlide === data.length-1){
+        
+        const firstLine = document.createElement('p')
+        firstLine.innerText = data[data.length-1].details[0]
+        firstLine.classList.add('first-line')
+        const secondLine = document.createElement('p')
+        secondLine.innerText = data[data.length -1].details[1]
+        const mainAnchor = document.createElement('a')
+        mainAnchor.href = "#"
+        mainAnchor.innerText = data[data.length-1].careersLink
+        const socialMediaContainer = document.createElement('ul')
+        data[data.length-1].socialMedia.forEach(media=>{
+            const listItem = document.createElement('li')
+            const mediaAnchor = document.createElement('a')
+            mediaAnchor.href = "#"
+            mediaAnchor.innerText = media
+            listItem.appendChild(mediaAnchor)
+            socialMediaContainer.appendChild(listItem)
+        })
+        lastSlideContent.appendChild(firstLine)
+        lastSlideContent.appendChild(secondLine)
+        lastSlideContent.appendChild(mainAnchor)
+        lastSlideContent.appendChild(socialMediaContainer)
+    }
+    
 }
 
 const slideTextContainer = (currentSlide) =>{
@@ -120,6 +142,7 @@ const slideTextContainer = (currentSlide) =>{
         case 2:
         case 6:
         case 7:
+        case 8:
             slideTextContainer.classList.remove('top-left')
             slideTextContainer.classList.remove('top-right')
             slideTextContainer.classList.remove('right')
@@ -133,7 +156,7 @@ const slideTextContainer = (currentSlide) =>{
             slideTextContainer.classList.remove('top-right')
             slideTextContainer.classList.add('right')
             break
-        case 8:
+        case 9:
             slideTextContainer.classList.remove('right')
             slideTextContainer.classList.remove('left')
             slideTextContainer.classList.remove('top-left')
