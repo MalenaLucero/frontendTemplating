@@ -3,7 +3,16 @@ body{
     height: 100vh;
     background-color: black;
     /*overflow: hidden;*/
+}
 
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li{
+    display: inline;
 }
 
 .background-image-container{
@@ -25,21 +34,25 @@ body{
 .top-left{
     top: 10px;
     left: 10px;
+    text-align: left;
 }
 
 .left{
     top: 40vh;
     left: 50px;
+    text-align: left;
 }
 
 .right{
     top: 40vh;
-    right: 20px;
+    right: 40px;
+    text-align: right;
 }
 
 .top-right{
     top: 10px;
-    right: 10px;
+    right: 20px;
+    text-align: right;
 }
 
 .slide-main-text{
@@ -108,4 +121,35 @@ body{
 
 .last-slide-content{
     color: white;
+    text-align: right;
+    margin-right: 10px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 1s;
 }
+
+.last-slide-content .first-line{
+    margin: 100px 0 0;
+}
+
+.last-slide-content .second-line{
+    margin: 0;
+}
+
+.last-slide-content .careers-anchor{
+    color: white;
+}
+
+.last-slide-content ul{
+    margin-top: 30px;
+}
+
+.last-slide-content li{
+    margin-left: 10px;
+}
+
+.last-slide-content li a{
+    color: white;
+    text-decoration: none;
+}
+

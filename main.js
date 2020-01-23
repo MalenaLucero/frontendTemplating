@@ -97,34 +97,11 @@ const slideChanges = currentSlide =>{
 
 const textFadeIn = (text) =>{
     slideTextContainer(currentSlide)
-    
     slideText.innerHTML = ''
     slideText.innerText = text
     slideText.style.opacity = 1 
-    //text of the last slide
     if(currentSlide === data.length-1){
-        
-        const firstLine = document.createElement('p')
-        firstLine.innerText = data[data.length-1].details[0]
-        firstLine.classList.add('first-line')
-        const secondLine = document.createElement('p')
-        secondLine.innerText = data[data.length -1].details[1]
-        const mainAnchor = document.createElement('a')
-        mainAnchor.href = "#"
-        mainAnchor.innerText = data[data.length-1].careersLink
-        const socialMediaContainer = document.createElement('ul')
-        data[data.length-1].socialMedia.forEach(media=>{
-            const listItem = document.createElement('li')
-            const mediaAnchor = document.createElement('a')
-            mediaAnchor.href = "#"
-            mediaAnchor.innerText = media
-            listItem.appendChild(mediaAnchor)
-            socialMediaContainer.appendChild(listItem)
-        })
-        lastSlideContent.appendChild(firstLine)
-        lastSlideContent.appendChild(secondLine)
-        lastSlideContent.appendChild(mainAnchor)
-        lastSlideContent.appendChild(socialMediaContainer)
+        printLastSlideContent()
     }
     
 }
@@ -163,4 +140,37 @@ const slideTextContainer = (currentSlide) =>{
             slideTextContainer.classList.add('top-right')
             
     }   
+}
+
+const printLastSlideContent = () =>{
+    const firstLine = document.createElement('p')
+    firstLine.innerText = data[data.length-1].details[0]
+    firstLine.classList.add('first-line')
+    const secondLine = document.createElement('p')
+    secondLine.innerText = data[data.length -1].details[1]
+    secondLine.classList.add('second-line')
+    const careersAnchor = document.createElement('a')
+    careersAnchor.classList.add('careers-anchor')
+    careersAnchor.href = "#"
+    careersAnchor.innerText = data[data.length-1].careersLink
+    const socialMediaContainer = document.createElement('ul')
+    data[data.length-1].socialMedia.forEach((media,index)=>{
+        const listItem = document.createElement('li')
+        const mediaAnchor = document.createElement('a')
+        mediaAnchor.href = "#"
+        if(media === 'Mailers'){
+            mediaAnchor.innerHTML = `<i class="fas fa-envelope">${' ' + media}</i>`
+        }else if(media === 'Facebook'){
+            mediaAnchor.innerHTML = `<i class="fab fa-facebook">${' ' + media}</i>`
+        }else if(media === 'Twitter'){
+            mediaAnchor.innerHTML = `<i class="fab fa-twitter">${' ' + media}</i>`
+        }
+        
+        listItem.appendChild(mediaAnchor)
+        socialMediaContainer.appendChild(listItem)
+    })
+    lastSlideContent.appendChild(firstLine)
+    secondLine.appendChild(careersAnchor)
+    lastSlideContent.appendChild(secondLine)
+    lastSlideContent.appendChild(socialMediaContainer)
 }
