@@ -34,13 +34,14 @@ const data = [{
     }
 ]
 
-let currentSlide = 0 // from 0 to 9
+let currentSlide = 0 
 let slideText
 let lastSlideContent
 
 const initialize = () =>{
     slideText = document.getElementById('slide-main-text')
     slideText.style.opacity = 1
+    lastSlideContent = document.getElementById('last-slide-content')
     slideMapButtons()
     window.addEventListener("click",()=>{
         data.forEach((e,i)=>{
@@ -65,6 +66,7 @@ const slideMapButtons = () =>{
         anchor.id = index
         anchor.onclick = () =>{
             slideText.style.opacity = 0
+            lastSlideContent.style.opacity = 0
             currentSlide = index
             slideChanges(currentSlide)
         }
@@ -76,6 +78,7 @@ const slideMapButtons = () =>{
 
 const moveImage = (direction) =>{
     slideText.style.opacity = 0
+    lastSlideContent.style.opacity = 0
     if(direction === 'forward'){
         currentSlide += 1
         slideChanges(currentSlide)
@@ -89,7 +92,6 @@ const slideChanges = currentSlide =>{
     const image = document.getElementById('background-image')
     image.style.transform = `translate(${data[currentSlide].view}%)`
     setTimeout(()=>{
-        lastSlideContent = document.getElementById('last-slide-content')
         lastSlideContent.innerHTML = ''
         textFadeIn(data[currentSlide].text)
     }, 1300)
@@ -101,6 +103,7 @@ const textFadeIn = (text) =>{
     slideText.innerText = text
     slideText.style.opacity = 1 
     if(currentSlide === data.length-1){
+        lastSlideContent.style.opacity = 1
         printLastSlideContent()
     }
     
@@ -141,6 +144,8 @@ const slideTextContainer = (currentSlide) =>{
             
     }   
 }
+
+//I'm sorry about this last function
 
 const printLastSlideContent = () =>{
     const firstLine = document.createElement('p')
