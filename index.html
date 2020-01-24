@@ -16,9 +16,17 @@
             <h2 id="slide-main-text" class="slide-main-text">WE ARE BREAKING OUR VOW OF SILENCE</h2>
             <div id="last-slide-content" class="last-slide-content"></div>
         </div>
-        <a href="#" class="button forward" onClick="moveImage('forward')"> > </a>
-        <a href="#" class="button backward" onClick="moveImage('backward')"> < </a>
-        <ul class="slide-map-container" id="slide-map-container"></ul>
+        <a href="#" class="button forward" id="right-arrow-btn" onClick="moveImage('forward')">></a>
+        <a href="#" class="button backward hide" id="left-arrow-btn" onClick="moveImage('backward')"><</a>
+        <div id="path-description" class="path-description">
+            <p>In January 2011, after a decade of digital, we opened the doors to our temple.</p>
+            <p>Follow our noble eightfold path to digital enlightment here.</p>   
+        </div>
+        <div class="steps-container">
+            <ul class="slide-map-container" id="slide-map-container"></ul>
+            <p id="current-step-description" class="current-step-description">Step <span id="current-step"></span> out of 8 on the path to digital enlightment</p> 
+        </div>
+        
     </div>
     
 </body>

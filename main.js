@@ -37,11 +37,15 @@ const data = [{
 let currentSlide = 0 
 let slideText
 let lastSlideContent
+let rightArrowBtn 
+let leftArrowBtn
 
 const initialize = () =>{
     slideText = document.getElementById('slide-main-text')
     slideText.style.opacity = 1
     lastSlideContent = document.getElementById('last-slide-content')
+    rightArrowBtn = document.getElementById('right-arrow-btn')
+    leftArrowBtn = document.getElementById('left-arrow-btn')
     slideMapButtons()
     window.addEventListener("click",()=>{
         data.forEach((e,i)=>{
@@ -69,6 +73,10 @@ const slideMapButtons = () =>{
             lastSlideContent.style.opacity = 0
             currentSlide = index
             slideChanges(currentSlide)
+            sideArrowBtnDisplay()
+            currentStepDisplay()
+            const pathDescription = document.getElementById('path-description')
+            pathDescription.style.opacity = 0
         }
         listItem.appendChild(anchor)
         slideMapContainer.appendChild(listItem)
@@ -79,6 +87,8 @@ const slideMapButtons = () =>{
 const moveImage = (direction) =>{
     slideText.style.opacity = 0
     lastSlideContent.style.opacity = 0
+    const pathDescription = document.getElementById('path-description')
+    pathDescription.style.opacity = 0
     if(direction === 'forward'){
         currentSlide += 1
         slideChanges(currentSlide)
@@ -86,6 +96,8 @@ const moveImage = (direction) =>{
         currentSlide -= 1
         slideChanges(currentSlide)
     }
+    sideArrowBtnDisplay()
+    currentStepDisplay()
 }
 
 const slideChanges = currentSlide =>{
@@ -141,8 +153,32 @@ const slideTextContainer = (currentSlide) =>{
             slideTextContainer.classList.remove('left')
             slideTextContainer.classList.remove('top-left')
             slideTextContainer.classList.add('top-right')
+            break
             
     }   
+}
+
+const sideArrowBtnDisplay = () =>{
+    if(currentSlide === data.length-1){
+        rightArrowBtn.classList.add('hide')
+    }else if(currentSlide === 0){
+        leftArrowBtn.classList.add('hide')
+    }else{
+        rightArrowBtn.classList.remove('hide')
+        leftArrowBtn.classList.remove('hide')
+    }
+}
+
+const currentStepDisplay = () =>{
+    const currentStepDescription = document.getElementById('current-step-description')
+    const currentStep = document.getElementById('current-step')
+    if(currentSlide === 0 || currentSlide === data.length -1){
+        currentStepDescription.style.opacity = 0
+    }else{
+        currentStepDescription.style.opacity = 1
+        currentStep.innerText = ''
+        currentStep.innerText = currentSlide
+    }
 }
 
 //I'm sorry about this last function
