@@ -28,7 +28,7 @@ const data = [{
     },{
         view: -96,
         text: 'BECOME A MONK',
-        details: ['Interested in joining our monastery?', 'Checkout our current openings at '],
+        details: [, 'Checkout our current openings at '],
         careersLink: 'mediamonks.com/careers',
         socialMedia: ['Mailers', 'Facebook', 'Twitter']
     }
@@ -36,17 +36,16 @@ const data = [{
 
 let currentSlide = 0 
 let slideText
-let lastSlideContent
 let rightArrowBtn 
 let leftArrowBtn
 
 const initialize = () =>{
     slideText = document.getElementById('slide-main-text')
     slideText.style.opacity = 1
-    lastSlideContent = document.getElementById('last-slide-content')
     rightArrowBtn = document.getElementById('right-arrow-btn')
     leftArrowBtn = document.getElementById('left-arrow-btn')
     slideMapButtons()
+    pathDescriptionDisplay()
     window.addEventListener("click",()=>{
         data.forEach((e,i)=>{
             if(i!==currentSlide){
@@ -70,13 +69,12 @@ const slideMapButtons = () =>{
         anchor.id = index
         anchor.onclick = () =>{
             slideText.style.opacity = 0
-            lastSlideContent.style.opacity = 0
             currentSlide = index
             slideChanges(currentSlide)
             sideArrowBtnDisplay()
             currentStepDisplay()
-            const pathDescription = document.getElementById('path-description')
-            pathDescription.style.opacity = 0
+            pathDescriptionDisplay()
+            lastSlideContentDisplay()
         }
         listItem.appendChild(anchor)
         slideMapContainer.appendChild(listItem)
@@ -87,8 +85,6 @@ const slideMapButtons = () =>{
 const moveImage = (direction) =>{
     slideText.style.opacity = 0
     lastSlideContent.style.opacity = 0
-    const pathDescription = document.getElementById('path-description')
-    pathDescription.style.opacity = 0
     if(direction === 'forward'){
         currentSlide += 1
         slideChanges(currentSlide)
@@ -98,13 +94,14 @@ const moveImage = (direction) =>{
     }
     sideArrowBtnDisplay()
     currentStepDisplay()
+    pathDescriptionDisplay()
+    lastSlideContentDisplay()
 }
 
 const slideChanges = currentSlide =>{
     const image = document.getElementById('background-image')
     image.style.transform = `translate(${data[currentSlide].view}%)`
     setTimeout(()=>{
-        lastSlideContent.innerHTML = ''
         textFadeIn(data[currentSlide].text)
     }, 1300)
 }
@@ -114,11 +111,6 @@ const textFadeIn = (text) =>{
     slideText.innerHTML = ''
     slideText.innerText = text
     slideText.style.opacity = 1 
-    if(currentSlide === data.length-1){
-        lastSlideContent.style.opacity = 1
-        printLastSlideContent()
-    }
-    
 }
 
 const slideTextContainer = (currentSlide) =>{
@@ -178,6 +170,24 @@ const currentStepDisplay = () =>{
         currentStepDescription.style.opacity = 1
         currentStep.innerText = ''
         currentStep.innerText = currentSlide
+    }
+}
+
+const pathDescriptionDisplay = () =>{
+    const pathDescription = document.getElementById('path-description')
+    if(currentSlide === 0){
+       pathDescription.style.opacity = 1
+    }else{
+        pathDescription.style.opacity = 0
+    }
+}
+
+const lastSlideContentDisplay = () =>{
+    const lastSlideContent = document.getElementById('last-slide-content')
+    if(currentSlide === data.length -1){
+        lastSlideContent.classList.remove('hide')
+    }else{
+        lastSlideContent.classList.add('hide')
     }
 }
 
