@@ -27,22 +27,22 @@ const data = [{
         text: 'TEMPORARY SACRIFICE BRINGS LASTING RESULTS'
     },{
         view: -96,
-        text: '',
+        text: ''
     }
 ]
 
 let currentSlide = 0 
-let slideText
-let rightArrowBtn 
-let leftArrowBtn
+const delay = 1300
 
 const initialize = () =>{
-    slideText = document.getElementById('slide-main-text')
-    slideText.style.opacity = 1
-    rightArrowBtn = document.getElementById('right-arrow-btn')
-    leftArrowBtn = document.getElementById('left-arrow-btn')
-    slideMapButtons()
-    pathDescriptionDisplay()
+    const mainText = document.getElementById('slide-main-text')
+    mainText.style.opacity = 1
+    const pathDescription = document.getElementById('path-description')
+    pathDescription.style.opacity = 1
+    sideArrowBtnDisplay()
+    printBottomMenu()
+
+    //shows the current slide in the bottom menu
     window.addEventListener("click",()=>{
         data.forEach((e,i)=>{
             if(i!==currentSlide){
@@ -55,7 +55,88 @@ const initialize = () =>{
     })
 }
 
-const slideMapButtons = () =>{
+const moveImage = (direction) =>{
+    if(direction === 'forward'){
+        currentSlide += 1
+    }else if(direction === 'backward'){
+        currentSlide -= 1
+    }
+    slideChanges()
+}
+
+const slideChanges = () =>{
+    backgroundSlide(currentSlide)
+    mainTextDisplay()
+    pathDescriptionDisplay()
+    sideArrowBtnDisplay()
+    currentStepDisplay()
+    lastSlideDisplay()
+}
+
+const backgroundSlide = currentSlide =>{
+    const image = document.getElementById('background-image')
+    image.style.transform = `translate(${data[currentSlide].view}%)`
+}
+
+const mainTextDisplay = () =>{
+    const mainText = document.getElementById('slide-main-text')
+    mainText.style.opacity = 0
+    setTimeout(()=>{
+        mainTextContainerPosition(currentSlide)
+        mainText.innerHTML = ''
+        mainText.innerText = data[currentSlide].text
+        mainText.style.opacity = 1
+    }, delay)
+}
+
+const pathDescriptionDisplay = () =>{
+    const pathDescription = document.getElementById('path-description')
+    pathDescription.style.opacity = 0
+    if(currentSlide === 0){
+        setTimeout(()=>{
+           pathDescription.style.opacity = 1 
+        }, delay)
+    }
+}
+
+const sideArrowBtnDisplay = () =>{
+    const rightArrowBtn = document.getElementById('right-arrow-btn')
+    const leftArrowBtn = document.getElementById('left-arrow-btn')
+    if(currentSlide === data.length-1){
+        rightArrowBtn.classList.add('hide')
+    }else if(currentSlide === 0){
+        leftArrowBtn.classList.add('hide')
+    }else{
+        rightArrowBtn.classList.remove('hide')
+        leftArrowBtn.classList.remove('hide')
+    }
+}
+
+const currentStepDisplay = () =>{
+    const currentStepDescription = document.getElementById('current-step-description')
+    const currentStep = document.getElementById('current-step')
+    currentStepDescription.style.opacity = 0
+    setTimeout(()=>{
+        if(currentSlide !== 0 && currentSlide !== data.length -1){
+            currentStepDescription.style.opacity = 1
+            currentStep.innerText = ''
+            currentStep.innerText = currentSlide
+        }
+    }, delay)  
+}
+
+const lastSlideDisplay = () =>{
+    const lastSlideContainer = document.getElementById('last-slide-container')
+    if(currentSlide === data.length -1){
+        setTimeout(()=>{
+          lastSlideContainer.style.transform = 'translate(0%)'  
+        }, 500)
+    }else{
+        lastSlideContainer.style.transform = 'translate(120%)'
+    }
+}
+
+const printBottomMenu = () =>{
     const slideMapContainer = document.getElementById('slide-map-container')
     data.forEach((e,index)=>{
         const listItem = document.createElement('li')
@@ -65,13 +146,11 @@ const slideMapButtons = () =>{
         anchor.href = "#"
         anchor.id = index
         anchor.onclick = () =>{
-            slideText.style.opacity = 0
             currentSlide = index
-            slideChanges(currentSlide)
-            sideArrowBtnDisplay()
-            currentStepDisplay()
-            pathDescriptionDisplay()
-            lastSlideDisplay()
+            slideChanges()
+        }
+        if(index === 0){
+            anchor.classList.add('clicked')
         }
         listItem.appendChild(anchor)
         slideMapContainer.appendChild(listItem)
@@ -79,36 +158,7 @@ const slideMapButtons = () =>{
     
 }
 
-const moveImage = (direction) =>{
-    slideText.style.opacity = 0
-    if(direction === 'forward'){
-        currentSlide += 1
-    }else if(direction === 'backward'){
-        currentSlide -= 1
-    }
-    slideChanges(currentSlide)
-    sideArrowBtnDisplay()
-    currentStepDisplay()
-    pathDescriptionDisplay()
-    lastSlideDisplay()
-}
-
-const slideChanges = currentSlide =>{
-    const image = document.getElementById('background-image')
-    image.style.transform = `translate(${data[currentSlide].view}%)`
-    setTimeout(()=>{
-        textFadeIn(data[currentSlide].text)
-    }, 1300)
-}
-
-const textFadeIn = (text) =>{
-    slideTextContainer(currentSlide)
-    slideText.innerHTML = ''
-    slideText.innerText = text
-    slideText.style.opacity = 1 
-}
-
-const slideTextContainer = (currentSlide) =>{
+const mainTextContainerPosition = (currentSlide) =>{
     const slideTextContainer = document.getElementById('slide-text-container')
     switch(currentSlide){
         case 0: 
@@ -145,83 +195,3 @@ const slideTextContainer = (currentSlide) =>{
     }   
 }
 
-const sideArrowBtnDisplay = () =>{
-    if(currentSlide === data.length-1){
-        rightArrowBtn.classList.add('hide')
-    }else if(currentSlide === 0){
-        leftArrowBtn.classList.add('hide')
-    }else{
-        rightArrowBtn.classList.remove('hide')
-        leftArrowBtn.classList.remove('hide')
-    }
-}
-
-const currentStepDisplay = () =>{
-    const currentStepDescription = document.getElementById('current-step-description')
-    const currentStep = document.getElementById('current-step')
-    currentStepDescription.style.opacity = 0
-    setTimeout(()=>{
-        if(currentSlide !== 0 && currentSlide !== data.length -1){
-            currentStepDescription.style.opacity = 1
-            currentStep.innerText = ''
-            currentStep.innerText = currentSlide
-        }
-    }, 1300)
-    
-}
-
-const pathDescriptionDisplay = () =>{
-    const pathDescription = document.getElementById('path-description')
-    if(currentSlide === 0){
-        pathDescription.style.opacity = 1
-    }else{
-        pathDescription.style.opacity = 0
-    }
-    
-}
-
-const lastSlideDisplay = () =>{
-    const lastSlideContainer = document.getElementById('last-slide-container')
-    if(currentSlide === data.length -1){
-        setTimeout(()=>{
-          lastSlideContainer.style.transform = 'translate(0%)'  
-        }, 500)
-    }else{
-        lastSlideContainer.style.transform = 'translate(120%)'
-    }
-}
-
-//I'm sorry about this last function
-
-/*const printLastSlideContent = () =>{
-    const firstLine = document.createElement('p')
-    firstLine.innerText = data[data.length-1].details[0]
-    firstLine.classList.add('first-line')
-    const secondLine = document.createElement('p')
-    secondLine.innerText = data[data.length -1].details[1]
-    secondLine.classList.add('second-line')
-    const careersAnchor = document.createElement('a')
-    careersAnchor.classList.add('careers-anchor')
-    careersAnchor.href = "#"
-    careersAnchor.innerText = data[data.length-1].careersLink
-    const socialMediaContainer = document.createElement('ul')
-    data[data.length-1].socialMedia.forEach((media,index)=>{
-        const listItem = document.createElement('li')
-        const mediaAnchor = document.createElement('a')
-        mediaAnchor.href = "#"
-        if(media === 'Mailers'){
-            mediaAnchor.innerHTML = `<i class="fas fa-envelope">${' ' + media}</i>`
-        }else if(media === 'Facebook'){
-            mediaAnchor.innerHTML = `<i class="fab fa-facebook">${' ' + media}</i>`
-        }else if(media === 'Twitter'){
-            mediaAnchor.innerHTML = `<i class="fab fa-twitter">${' ' + media}</i>`
-        }
-        
-        listItem.appendChild(mediaAnchor)
-        socialMediaContainer.appendChild(listItem)
-    })
-    lastSlideContent.appendChild(firstLine)
-    secondLine.appendChild(careersAnchor)
-    lastSlideContent.appendChild(secondLine)
-    lastSlideContent.appendChild(socialMediaContainer)
-}*/

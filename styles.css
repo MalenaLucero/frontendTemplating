@@ -24,7 +24,7 @@ body{
     background-color: black;
     font-family: font-light;
     color: #e0dfdc;
-    /*overflow: hidden;*/
+    overflow: hidden;
 }
 
 h2{
@@ -32,6 +32,13 @@ h2{
     border-bottom: 1px solid #e0dfdc;
     display: inline;
     text-shadow: 2px 3px 4px #000000;
+    font-size: 30px;
+}
+
+@media(max-width: 500px){
+    h2{
+        font-size: 25px;
+    }
 }
 
 ul{
@@ -58,6 +65,13 @@ li{
     position: absolute;
     z-index: 99;
     width: 300px;
+    
+}
+
+@media(max-width: 500px){
+    .slide-text-container{
+        width: 200px;
+    }
 }
 
 .top-left{
@@ -67,13 +81,13 @@ li{
 }
 
 .left{
-    top: 40vh;
+    top: 45vh;
     left: 50px;
     text-align: left;
 }
 
 .right{
-    top: 40vh;
+    top: 45vh;
     right: 40px;
     text-align: right;
 }
@@ -84,10 +98,18 @@ li{
     text-align: right;
 }
 
+@media(max-width: 500px){
+    .left, .right{
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
 .slide-main-text{
     color: white;
-    font-size: 30px;
-    /*text-decoration: underline;*/
+    
     opacity: 0;
     transition: opacity 1s;
 }
@@ -98,6 +120,7 @@ li{
     font-weight: normal;
     text-decoration: none;
     color: #e0dfdc;
+    cursor: pointer;
 }
 
 .button.forward{
@@ -137,7 +160,7 @@ li{
     z-index: 99;
     color: white;
     list-style: none;
-    margin: 0;
+    margin: 0 30px 0 0;
     padding: 0;
     font-size: 8px;
     display: inline-block;
@@ -168,7 +191,6 @@ li{
 
 .current-step-description{
     display: inline-block;
-    margin-left: 30px;
     opacity: 0;
     transition: opacity 1s;
     font-family: font-light;
@@ -189,13 +211,10 @@ li{
 .last-slide-content{
     color: white;
     font-size: 12px;
+    margin-top: 30vh;
 }
 
-.last-slide-content .first-line{
-    margin: 100px 0 0;
-}
-
-.last-slide-content .second-line{
+.last-slide-content p{
     margin: 0;
 }
 
