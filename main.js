@@ -2,31 +2,31 @@ const data = [{
         view: 0,
         text: 'WE ARE BREAKING OUR VOW OF SILENCE'
     },{
-        view: -14,
+        view: -870,
         text: 'TALENT IS GIVEN, TRUE SKILL IS EARNED'
     },{
-        view: -22,
+        view: -1740,
         text: 'BE FLEXIBLE TO CHANGE AND STURDY IN CONVICTION'
     },{
-        view: -33,
+        view: -2610,
         text: 'USE MANY SKILLS YET WORK AS ONE'
     },{
-        view: -44,
+        view: -3480,
         text: 'TO MASTER ANYTHING FIND INTEREST IN EVERYTHING'
     },{
-        view: -55,
+        view: -4350,
         text: 'INDIVIDUALS FLOURISH IF CUSTOM AND WISDOM ARE SHARED'
     },{
-        view: -69,
+        view: -5220,
         text: 'TRAIN FOR PERFECTION BUT AIM FOR MORE'
     },{
-        view: -81,
+        view: -6090,
         text: 'TAKE PRIDE IN YOUR WORK BUT DO NOT SEEK PRAISE'
     },{
-        view: -81,
+        view: -6090,
         text: 'TEMPORARY SACRIFICE BRINGS LASTING RESULTS'
     },{
-        view: -98,
+        view: -6960,
         text: ''
     }
 ]
@@ -87,7 +87,7 @@ const slideChanges = () =>{
 
 const backgroundSlide = currentSlide =>{
     const image = document.getElementById('background-image')
-    if(window.innerWidth < 500){
+    if(window.innerWidth < 0){
         if(currentSlide === 6){
             image.style.transform = 'translateX(-77%)'
         }else if(currentSlide === 7 || currentSlide === 8){
@@ -98,7 +98,7 @@ const backgroundSlide = currentSlide =>{
             image.style.transform = `translateX(${data[currentSlide].view}%)` 
         }
     }else{
-        image.style.transform = `translateX(${data[currentSlide].view}%)` 
+        image.style.transform = `translateX(${data[currentSlide].view}px)` 
     }
 }
 
