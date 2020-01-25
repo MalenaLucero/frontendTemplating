@@ -82,6 +82,8 @@ const backgroundSlide = currentSlide =>{
             image.style.transform = 'translateX(-93%)'
         }else if(currentSlide === data.length -1){
             image.style.transform = 'translateX(-100%)'
+        }else{
+            image.style.transform = `translateX(${data[currentSlide].view}%)` 
         }
     }else{
         image.style.transform = `translateX(${data[currentSlide].view}%)` 
