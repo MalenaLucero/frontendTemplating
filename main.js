@@ -75,7 +75,12 @@ const slideChanges = () =>{
 
 const backgroundSlide = currentSlide =>{
     const image = document.getElementById('background-image')
-    image.style.transform = `translateX(${data[currentSlide].view}%)`
+    if(window.innerWidth < 500 && currentSlide === data.length -1){
+        image.style.transform = 'translateX(-100%)'
+    }else{
+        image.style.transform = `translateX(${data[currentSlide].view}%)` 
+    }
+    
 }
 
 const mainTextDisplay = () =>{
