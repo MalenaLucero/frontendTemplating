@@ -39,7 +39,6 @@ h2{
 
 @media(max-width: 500px){
     h2{
-        font-family: font-bold;
         font-size: 25px;
     }
 }
@@ -56,6 +55,7 @@ li{
 
 .background-image-container{
     position: relative;
+    overflow: hidden;
 }
 
 .background-image{
