@@ -20,7 +20,7 @@ const data = [{
         view: -66,
         text: 'TRAIN FOR PERFECTION BUT AIM FOR MORE'
     },{
-        view: -87,
+        view: -85,
         text: 'TAKE PRIDE IN YOUR WORK BUT DO NOT SEEK PRAISE'
     },{
         view: -85,
