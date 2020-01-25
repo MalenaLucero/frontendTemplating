@@ -20,7 +20,7 @@
 
 body{
     margin: 0;
-    height: 100vh;
+    max-height: 100vh;
     background-color: black;
     font-family: font-light;
     color: #e0dfdc;
@@ -140,6 +140,7 @@ li{
 .path-description{
     position: absolute;
     left: 10px;
+    right: 10px;
     bottom: 100px;
     opacity: 0;
     transition: opacity 1s;
@@ -206,6 +207,7 @@ li{
     text-align: right;
     transform: translateX(120%);
     transition: transform 0.8s;
+    overflow: hidden;
 }
 
 .last-slide-content{
@@ -249,4 +251,3 @@ svg{
 .hide{
     display: none;
 }
-
