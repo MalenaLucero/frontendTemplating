@@ -148,8 +148,8 @@ const printBottomMenu = () =>{
         const anchor = document.createElement('a')
         anchor.innerText = index
         if(index === 0 || index === data.length -1) anchor.classList.add('side')
-        anchor.href = "#"
         anchor.id = index
+        anchor.style.cursor = 'pointer'
         anchor.onclick = () =>{
             currentSlide = index
             slideChanges()
