@@ -75,12 +75,17 @@ const slideChanges = () =>{
 
 const backgroundSlide = currentSlide =>{
     const image = document.getElementById('background-image')
-    if(window.innerWidth < 500 && currentSlide === data.length -1){
-        image.style.transform = 'translateX(-100%)'
+    if(window.innerWidth < 500){
+        if(currentSlide === 6){
+            image.style.transform = 'translateX(-77%)'
+        }else if(currentSlide === 7 || currentSlide === 8){
+            image.style.transform = 'translateX(-93%)'
+        }else if(currentSlide === data.length -1){
+            image.style.transform = 'translateX(-100%)'
+        }
     }else{
         image.style.transform = `translateX(${data[currentSlide].view}%)` 
     }
-    
 }
 
 const mainTextDisplay = () =>{
@@ -136,7 +141,8 @@ const lastSlideDisplay = () =>{
         setTimeout(()=>{
           lastSlideContainer.style.transform = 'translate(0%)'  
         }, 500)
-    }else{
+    }
+    else{
         lastSlideContainer.style.transform = 'translate(120%)'
     }
 }

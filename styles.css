@@ -104,9 +104,9 @@ li{
 @media(max-width: 500px){
     .left, .right{
         text-align: center;
-        top: 50%;
+        top: 30vh;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translateX(-50%);
     }
 }
 
@@ -148,9 +148,21 @@ li{
     transition: opacity 1s;
 }
 
+@media(max-width: 500px){
+    .path-description{
+        width: 50%;
+    }
+}
+
 .path-description p{
     margin: 0;
     font-size: 10px;
+}
+
+@media(max-width: 500px){
+    .path-description p{
+        font-size: 12px;
+    }
 }
 
 .steps-container{
