@@ -23,10 +23,10 @@ const data = [{
         view: -87,
         text: 'TAKE PRIDE IN YOUR WORK BUT DO NOT SEEK PRAISE'
     },{
-        view: -87,
+        view: -85,
         text: 'TEMPORARY SACRIFICE BRINGS LASTING RESULTS'
     },{
-        view: -96,
+        view: -98,
         text: ''
     }
 ]
@@ -75,7 +75,7 @@ const slideChanges = () =>{
 
 const backgroundSlide = currentSlide =>{
     const image = document.getElementById('background-image')
-    image.style.transform = `translate(${data[currentSlide].view}%)`
+    image.style.transform = `translateX(${data[currentSlide].view}%)`
 }
 
 const mainTextDisplay = () =>{
