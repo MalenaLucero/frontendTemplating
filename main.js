@@ -20,10 +20,10 @@ const data = [{
         view: -69,
         text: 'TRAIN FOR PERFECTION BUT AIM FOR MORE'
     },{
-        view: -85,
+        view: -81,
         text: 'TAKE PRIDE IN YOUR WORK BUT DO NOT SEEK PRAISE'
     },{
-        view: -85,
+        view: -81,
         text: 'TEMPORARY SACRIFICE BRINGS LASTING RESULTS'
     },{
         view: -98,
@@ -53,6 +53,18 @@ const initialize = () =>{
         const clickedAnchor = document.getElementById(currentSlide)
         clickedAnchor.classList.add('clicked')
     })
+
+    hideLoader()
+}
+
+const hideLoader = () =>{
+    const loaderContainer = document.getElementById('loader-container')
+    setTimeout(()=>{
+        loaderContainer.style.backgroundColor = 'rgba(0,0,0,0)'
+    }, 1000)
+    setTimeout(()=>{
+        loaderContainer.style.zIndex = 0;
+    }, 1500)
 }
 
 const moveImage = (direction) =>{

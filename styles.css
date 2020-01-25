@@ -28,6 +28,24 @@ body{
     overflow: hidden;
 }
 
+.loader-container{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    transition: background-color 1s;
+}
+
+.loader-container .loader{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
 h2{
     font-weight: normal;
     border-bottom: 1px solid #e0dfdc;
@@ -66,7 +84,7 @@ li{
 
 .slide-text-container{
     position: absolute;
-    z-index: 99;
+    z-index: 2;
     width: 300px;
     
 }
@@ -129,14 +147,14 @@ li{
     position: absolute;
     top: 50vh;
     right: 10px;
-    z-index: 99;
+    z-index: 2;
 }
 
 .button.backward{
     position: absolute;
     top: 50vh;
     left: 10px;
-    z-index: 99;
+    z-index: 2;
 }
 
 .path-description{
@@ -173,7 +191,7 @@ li{
 }
 
 .slide-map-container{
-    z-index: 99;
+    z-index: 2;
     color: white;
     list-style: none;
     margin: 0 30px 0 0;
