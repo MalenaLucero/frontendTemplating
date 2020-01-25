@@ -27,10 +27,7 @@ const data = [{
         text: 'TEMPORARY SACRIFICE BRINGS LASTING RESULTS'
     },{
         view: -96,
-        text: 'BECOME A MONK',
-        details: [, 'Checkout our current openings at '],
-        careersLink: 'mediamonks.com/careers',
-        socialMedia: ['Mailers', 'Facebook', 'Twitter']
+        text: '',
     }
 ]
 
@@ -74,7 +71,7 @@ const slideMapButtons = () =>{
             sideArrowBtnDisplay()
             currentStepDisplay()
             pathDescriptionDisplay()
-            lastSlideContentDisplay()
+            lastSlideDisplay()
         }
         listItem.appendChild(anchor)
         slideMapContainer.appendChild(listItem)
@@ -84,18 +81,16 @@ const slideMapButtons = () =>{
 
 const moveImage = (direction) =>{
     slideText.style.opacity = 0
-    lastSlideContent.style.opacity = 0
     if(direction === 'forward'){
         currentSlide += 1
-        slideChanges(currentSlide)
     }else if(direction === 'backward'){
         currentSlide -= 1
-        slideChanges(currentSlide)
     }
+    slideChanges(currentSlide)
     sideArrowBtnDisplay()
     currentStepDisplay()
     pathDescriptionDisplay()
-    lastSlideContentDisplay()
+    lastSlideDisplay()
 }
 
 const slideChanges = currentSlide =>{
@@ -164,36 +159,41 @@ const sideArrowBtnDisplay = () =>{
 const currentStepDisplay = () =>{
     const currentStepDescription = document.getElementById('current-step-description')
     const currentStep = document.getElementById('current-step')
-    if(currentSlide === 0 || currentSlide === data.length -1){
-        currentStepDescription.style.opacity = 0
-    }else{
-        currentStepDescription.style.opacity = 1
-        currentStep.innerText = ''
-        currentStep.innerText = currentSlide
-    }
+    currentStepDescription.style.opacity = 0
+    setTimeout(()=>{
+        if(currentSlide !== 0 && currentSlide !== data.length -1){
+            currentStepDescription.style.opacity = 1
+            currentStep.innerText = ''
+            currentStep.innerText = currentSlide
+        }
+    }, 1300)
+    
 }
 
 const pathDescriptionDisplay = () =>{
     const pathDescription = document.getElementById('path-description')
     if(currentSlide === 0){
-       pathDescription.style.opacity = 1
+        pathDescription.style.opacity = 1
     }else{
         pathDescription.style.opacity = 0
     }
+    
 }
 
-const lastSlideContentDisplay = () =>{
-    const lastSlideContent = document.getElementById('last-slide-content')
+const lastSlideDisplay = () =>{
+    const lastSlideContainer = document.getElementById('last-slide-container')
     if(currentSlide === data.length -1){
-        lastSlideContent.classList.remove('hide')
+        setTimeout(()=>{
+          lastSlideContainer.style.transform = 'translate(0%)'  
+        }, 700)
     }else{
-        lastSlideContent.classList.add('hide')
+        lastSlideContainer.style.transform = 'translate(120%)'
     }
 }
 
 //I'm sorry about this last function
 
-const printLastSlideContent = () =>{
+/*const printLastSlideContent = () =>{
     const firstLine = document.createElement('p')
     firstLine.innerText = data[data.length-1].details[0]
     firstLine.classList.add('first-line')
@@ -224,4 +224,4 @@ const printLastSlideContent = () =>{
     secondLine.appendChild(careersAnchor)
     lastSlideContent.appendChild(secondLine)
     lastSlideContent.appendChild(socialMediaContainer)
-}
+}*/

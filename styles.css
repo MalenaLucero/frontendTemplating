@@ -179,9 +179,19 @@ li{
     font-size: 10px;
 }
 
+.last-slide-container{
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-block;
+    text-align: right;
+    transform: translateX(120%);
+    transition: transform 0.6s;
+}
+
 .last-slide-content{
     color: white;
-    text-align: right;
     font-size: 12px;
 }
 
