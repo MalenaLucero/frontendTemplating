@@ -185,7 +185,7 @@ const lastSlideDisplay = () =>{
     if(currentSlide === data.length -1){
         setTimeout(()=>{
           lastSlideContainer.style.transform = 'translate(0%)'  
-        }, 700)
+        }, 500)
     }else{
         lastSlideContainer.style.transform = 'translate(120%)'
     }
