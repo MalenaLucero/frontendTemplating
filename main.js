@@ -2,7 +2,7 @@ const data = [{
         view: 0,
         text: 'WE ARE BREAKING OUR VOW OF SILENCE'
     },{
-        view: -17,
+        view: -14,
         text: 'TALENT IS GIVEN, TRUE SKILL IS EARNED'
     },{
         view: -22,
@@ -17,7 +17,7 @@ const data = [{
         view: -55,
         text: 'INDIVIDUALS FLOURISH IF CUSTOM AND WISDOM ARE SHARED'
     },{
-        view: -66,
+        view: -69,
         text: 'TRAIN FOR PERFECTION BUT AIM FOR MORE'
     },{
         view: -85,
