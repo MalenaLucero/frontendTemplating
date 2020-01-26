@@ -128,7 +128,9 @@ const sideArrowBtnDisplay = () =>{
     const leftArrowBtn = document.getElementById('left-arrow-btn')
     if(currentSlide === data.length-1){
         rightArrowBtn.classList.add('hide')
+        leftArrowBtn.classList.remove('hide')
     }else if(currentSlide === 0){
+        rightArrowBtn.classList.remove('hide')
         leftArrowBtn.classList.add('hide')
     }else{
         rightArrowBtn.classList.remove('hide')
@@ -167,16 +169,14 @@ const printBottomMenu = () =>{
         const listItem = document.createElement('li')
         const anchor = document.createElement('a')
         anchor.innerText = index
-        if(index === 0 || index === data.length -1) anchor.classList.add('side')
         anchor.id = index
         anchor.style.cursor = 'pointer'
         anchor.onclick = () =>{
             currentSlide = index
             slideChanges()
         }
-        if(index === 0){
-            anchor.classList.add('clicked')
-        }
+        if(index === 0 || index === data.length -1) anchor.classList.add('side')
+        if(index === 0) anchor.classList.add('clicked')
         listItem.appendChild(anchor)
         slideMapContainer.appendChild(listItem)
     })
